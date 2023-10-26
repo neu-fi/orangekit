@@ -1,0 +1,23 @@
+{
+	"name": "orangekit",
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "pnpm --recursive --parallel --filter orangekit* --filter example dev",
+		"dev:lib": "pnpm --filter orangekit* dev",
+		"dev:example": "pnpm dev:lib & pnpm --filter example dev",
+		"clean": "rm -rf ./packages/orangekit/dist && rm -rf ./packages/orangekit/node_modules && pnpm install",
+		"release": "pnpm publish"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/neu-fi/orangekit.git"
+	},
+	"packageManager": "pnpm@8.9.2",
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild"
+		]
+	}
+}

@@ -6,13 +6,19 @@
 		"dev": "pnpm --recursive --parallel --filter orangekit* --filter example dev",
 		"dev:lib": "pnpm --filter orangekit* dev",
 		"dev:example": "pnpm dev:lib & pnpm --filter example dev",
+		"build": "pnpm --recursive --parallel --filter orangekit* build",
+		"changeset": "changeset",
 		"clean": "rm -rf ./packages/orangekit/dist && rm -rf ./packages/orangekit/node_modules && pnpm install",
-		"release": "pnpm publish"
+		"release": "pnpm release:build && changeset publish",
+		"release:build": "pnpm clean && MINIFY_CSS=true pnpm --recursive --parallel --filter \"!*-app\" build && cp README.md packages/orangekit/README.md"
 	},
 	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/neu-fi/orangekit.git"
+	},
+	"devDependencies": {
+		"@changesets/cli": "2.26.2"
 	},
 	"packageManager": "pnpm@8.9.2",
 	"pnpm": {

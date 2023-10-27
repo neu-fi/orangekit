@@ -11,7 +11,7 @@ import {
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { CopyClipboard } from "../ui/copy-clipboard"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useToast } from "../ui/use-toast"
 import { AccountContext } from "../../context/account/accountContext"
 import { IAccountContext } from "../../types/account"
@@ -28,7 +28,7 @@ function renderer() {
 		address: "",
 		message: `${
 			window.location.hostname
-		} wants to verify your address, timestamp: ${Number(new Date())}`,
+		} wants to verify your address, timestamp: ${Number(Date.now())}`,
 		signature: "",
 	})
 	const { toast } = useToast()
@@ -36,6 +36,15 @@ function renderer() {
 
 	const { connect } = useContext(AccountContext) as IAccountContext
 	const { connectedWallet } = useContext(WalletContext) as IWalletContext
+
+	useEffect(() => {
+		setAuthenticationInfo({
+			...authenticationInfo,
+			message: `${
+				window.location.hostname
+			} wants to verify your address, timestamp: ${Number(Date.now())}`,
+		})
+	}, [showModal])
 
 	return (
 		<Dialog
@@ -46,14 +55,15 @@ function renderer() {
 		>
 			<DialogTrigger asChild className="w-full">
 				<Button
-					variant="outline"
+					variant={connectedWallet?.name === "other" ? "default" : "outline"}
 					onClick={() => {
 						setShowModal(true)
 					}}
 					className="w-full"
 					disabled={connectedWallet !== null}
 				>
-					Authenticate with signature
+					{connectedWallet?.name === "other" ? "Authenticated" : "Authenticate"}{" "}
+					with signature
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
@@ -131,7 +141,7 @@ function renderer() {
 								toast({
 									variant: "destructive",
 									title: "Authentication failed",
-									description: `You are not authenticated with the address ${authenticationInfo.address}`,
+									description: `Invalid signature for the address: ${authenticationInfo.address}`,
 								})
 							}
 						}}

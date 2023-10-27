@@ -53,6 +53,7 @@ function DisconnectedButton({ account }: { account: Account }) {
 			<Dialog open={open} onOpenChange={setOpen}>
 				<DialogTrigger asChild>
 					<Button
+						variant={"orange"}
 						onClick={() => {
 							setOpen(true)
 						}}

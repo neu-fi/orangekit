@@ -1,10 +1,10 @@
 "use client"
 
 import { useEffect } from "react"
-import { ConnectButton, useBitcoinKit } from "orangekit"
+import { ConnectButton, useOrangeKit } from "orangekit"
 
 export default function Home() {
-	const { account } = useBitcoinKit()
+	const { account } = useOrangeKit()
 	useEffect(() => {
 		console.log(account)
 	}, [account])

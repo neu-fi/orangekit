@@ -1,35 +1,32 @@
+export type WalletMetaData = {
+	name: string
+	logoPath: string
+	dowloadLink: string
+	description?: string
+}
+
 export interface OrdinalSafe {
 	sign: (message: string) => Promise<string>
 	requestAccounts: () => Promise<string[]>
-	render: () => JSX.Element
-	isInjected: boolean
-	name: "ordinalSafe"
+	isInjected: () => boolean
+	metaData: WalletMetaData
 }
 
 export interface Unisat {
 	sign: (message: string) => Promise<string>
 	requestAccounts: () => Promise<string[]>
-	render: () => JSX.Element
-	isInjected: boolean
-	name: "unisat"
+	isInjected: () => boolean
+	metaData: WalletMetaData
 }
 
 export interface Xverse {
-	sign: (message: string, address: string) => Promise<string>
+	sign: (message: string) => Promise<string>
 	requestAccounts: () => Promise<string[]>
-	render: () => JSX.Element
-	isInjected: boolean
-	name: "xverse"
+	isInjected: () => boolean
+	metaData: WalletMetaData
 }
 
-export interface Other {
-	requestAccounts: () => Promise<string[]>
-	render: () => JSX.Element
-	isInjected: true
-	name: "other"
-}
-
-export type Wallet = OrdinalSafe | Unisat | Xverse | Other
+export type Wallet = OrdinalSafe | Unisat | Xverse
 
 export interface IWalletContext {
 	wallets: Wallet[]

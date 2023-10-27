@@ -6,7 +6,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "../components/ui/dialog"
-import { useBitcoinKit } from "../hooks/useBitcoinKit"
+import { useOrangeKit } from "../hooks/useOrangeKit"
 import { shorthandAddress } from "../lib/utils"
 import { CopyClipboard } from "./ui/copy-clipboard"
 import { WalletContext } from "../context/wallet/walletContext"
@@ -14,6 +14,7 @@ import { IWalletContext } from "../types/wallet"
 import { useContext, useEffect, useState } from "react"
 import { AccountContext } from "../context/account/accountContext"
 import { IAccountContext } from "../types/account"
+import WalletUI from "./WalletUI"
 
 const ArrowRightOnRectangular = () => {
 	return (
@@ -37,7 +38,7 @@ const ArrowRightOnRectangular = () => {
 }
 
 export default function ConnectButton() {
-	const { account } = useBitcoinKit()
+	const { account } = useOrangeKit()
 	const { wallets } = useContext(WalletContext) as IWalletContext
 	const { disconnect } = useContext(AccountContext) as IAccountContext
 	const [open, setOpen] = useState(false)
@@ -78,7 +79,9 @@ export default function ConnectButton() {
 					</DialogHeader>
 					<div className="grid gap-4 py-4">
 						{wallets.map((wallet) => (
-							<div key={wallet.name}>{wallet.render()}</div>
+							<div key={wallet.metaData.name}>
+								{<WalletUI wallet={wallet}></WalletUI>}
+							</div>
 						))}
 						{account?.connected && (
 							<Button

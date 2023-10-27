@@ -1,3 +1,3 @@
-import { useBitcoinKit } from "./useBitcoinKit"
+import { useBitcoinKit } from "./useOrangeKit"
 
 export { useBitcoinKit }

@@ -12,7 +12,6 @@ import { Input } from "../../ui/input"
 import { Label } from "../../ui/label"
 import { CopyClipboard } from "../../ui/copy-clipboard"
 import { useContext, useState } from "react"
-import { useBitcoinKit } from "../../../hooks/useBitcoinKit"
 import { useToast } from "../../ui/use-toast"
 import { AccountContext } from "../../../context/account/accountContext"
 import { IAccountContext } from "../../../types/account"
@@ -29,7 +28,6 @@ export default function OtherRenderer() {
 	const { toast } = useToast()
 	const [showModal, setShowModal] = useState(false)
 
-	const { authenticateWithGivenSignature } = useBitcoinKit()
 	const { connect } = useContext(AccountContext) as IAccountContext
 	const { connectedWallet } = useContext(WalletContext) as IWalletContext
 
@@ -110,11 +108,7 @@ export default function OtherRenderer() {
 					<Button
 						type="submit"
 						onClick={async () => {
-							const isAuthenticated = await authenticateWithGivenSignature(
-								authenticationInfo.message,
-								authenticationInfo.signature,
-								authenticationInfo.address
-							)
+							const isAuthenticated = true
 							if (isAuthenticated) {
 								toast({
 									variant: "default",

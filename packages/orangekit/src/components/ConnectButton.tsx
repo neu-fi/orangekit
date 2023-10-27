@@ -55,9 +55,6 @@ export default function ConnectButton() {
 					<CopyClipboard text={account?.address!}>
 						{shorthandAddress(account?.address!)}
 					</CopyClipboard>
-					<div className="bg-black text-white text-sm rounded-md px-2 flex items-center">
-						{account?.balance!} BTC
-					</div>
 				</div>
 			)}
 			<Dialog open={open} onOpenChange={setOpen}>

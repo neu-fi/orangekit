@@ -1,36 +1,32 @@
 export interface OrdinalSafe {
-	sign: (message: string, type?: "bip322-simple" | "ecdsa") => Promise<string>
+	sign: (message: string) => Promise<string>
 	requestAccounts: () => Promise<string[]>
 	render: () => JSX.Element
-	getBalance: () => Promise<number>
+	isInjected: boolean
 	name: "ordinalSafe"
 }
 
 export interface Unisat {
-	sign: (message: string, type?: "bip322-simple" | "ecdsa") => Promise<string>
+	sign: (message: string) => Promise<string>
 	requestAccounts: () => Promise<string[]>
 	render: () => JSX.Element
-	getBalance: () => Promise<number>
+	isInjected: boolean
 	name: "unisat"
 }
 
 export interface Xverse {
-	sign: (
-		message: string,
-		address: string,
-		type?: "bip322-simple" | "ecdsa"
-	) => Promise<string>
+	sign: (message: string, address: string) => Promise<string>
 	requestAccounts: () => Promise<string[]>
 	render: () => JSX.Element
-	getBalance: () => Promise<number>
+	isInjected: boolean
 	name: "xverse"
 }
 
 export interface Other {
-	sign: (message: string, type?: "bip322-simple" | "ecdsa") => Promise<string>
+	sign: (message: string) => Promise<string>
 	requestAccounts: () => Promise<string[]>
 	render: () => JSX.Element
-	getBalance: () => Promise<number>
+	isInjected: boolean
 	name: "other"
 }
 

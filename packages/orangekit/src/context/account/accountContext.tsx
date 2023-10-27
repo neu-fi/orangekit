@@ -17,9 +17,6 @@ const AccountProvider: React.FC<{ children: React.ReactNode }> = ({
 	const [account, setAccount] = React.useState<Account>({
 		connected: false,
 		address: null,
-		network: null,
-		balance: 0,
-		authenticated: false,
 	})
 
 	const { toast } = useToast()
@@ -39,18 +36,12 @@ const AccountProvider: React.FC<{ children: React.ReactNode }> = ({
 			setAccount({
 				connected: true,
 				address: accounts[0],
-				network: null,
-				balance: await wallet.getBalance(),
-				authenticated: false,
 			})
 			window.localStorage.setItem(
 				"account",
 				JSON.stringify({
 					connected: true,
 					address: accounts[0],
-					network: null,
-					balance: await wallet.getBalance(),
-					authenticated: false,
 				})
 			)
 		} catch (error: any) {
@@ -59,6 +50,7 @@ const AccountProvider: React.FC<{ children: React.ReactNode }> = ({
 				title: "Connection failed",
 				description: `Error: ${error.message ? error.message : error}`,
 			})
+			console.log(error)
 		}
 	}
 
@@ -76,30 +68,17 @@ const AccountProvider: React.FC<{ children: React.ReactNode }> = ({
 			setAccount({
 				connected: false,
 				address: null,
-				network: null,
-				balance: 0,
-				authenticated: false,
 			})
 			window.localStorage.setItem(
 				"account",
 				JSON.stringify({
 					connected: false,
 					address: null,
-					network: null,
-					balance: 0,
-					authenticated: false,
 				})
 			)
 		} catch (error) {
 			console.log(error)
 		}
-	}
-
-	const authenticate = async () => {
-		setAccount({
-			...account,
-			authenticated: true,
-		})
 	}
 
 	React.useEffect(() => {
@@ -109,9 +88,6 @@ const AccountProvider: React.FC<{ children: React.ReactNode }> = ({
 				: {
 						connected: false,
 						address: null,
-						network: null,
-						balance: 0,
-						authenticated: false,
 				  }
 		)
 	}, [])
@@ -122,7 +98,6 @@ const AccountProvider: React.FC<{ children: React.ReactNode }> = ({
 				connect,
 				disconnect,
 				account,
-				authenticate,
 			}}
 		>
 			{children}

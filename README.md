@@ -1,11 +1,23 @@
-# OrangeKit
+## 🍊 OrangeKit
 
-> The easiest way to connect a bitcoin wallet
+OrangeKit is a React library built for web applications, designed to seamlessly integrate them with Bitcoin wallets.
 
-OrangeKit is a React library that makes it easy to connect your dapp with
-bitcoin network.
+## 📌 Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [App](#app)
+  - [ConnectButton](#connectbutton)
+- [API Reference](#reference)
+  - [OrangeKitProvider](#orangekitprovider)
+  - [ConnectButton](#connectbutton)
+  - [useOrangeKit Hook](#useorangekit-hook)
+  - [Account Type](#account-type)
+- [Contribution Guidelines](#contribution-guidelines)
+- [Support and Questions](#support-and-questions)
+- [License](#license)
 
-## Features
+## 🚀 Features
 
 OrangeKit currently provides the following:
 
@@ -15,93 +27,109 @@ OrangeKit currently provides the following:
   - OrdinalSafe
   - Other (Via manual message signing)
 - Read connected wallet address
-- BIP322 utilities
+- BIP322 utilities:
   - Signing
   - Verify
 
-## Installation
-
-```
+## 🛠 Installation
+```bash
 npm install orangekit
 # or
 pnpm install orangekit
 # or
 yarn add orangekit
-#or
+# or
 bun install orangekit
 ```
 
-## Usage
-
+## 🖥 Usage
 ### App
-
-```
-// "use client" if you are using next.js
+```javascript
 import React from "react"
 import { OrangeKitProvider } from "orangekit"
 import "orangekit/dist/index.css"
 
 export default function App() {
 return (
-	<OrangeKitProvider>
-		<YourApp />
-	</OrangeKitProvider>
-	)
+<OrangeKitProvider>
+<YourApp />
+</OrangeKitProvider>
+)
 }
 ```
 
 ### ConnectButton
-
-```
-// "use client" if you are using next.js
+```javascript
 import { ConnectButton } from "orangekit"
 
 export default function YourApp() {
-	return <ConnectButton />
+return <ConnectButton />
 }
 ```
 
-## Reference
-
+## 📚 Reference
 ### OrangeKitProvider
+**Properties**:
 
-#### Wallet Options
+- **children**: The components to render inside the provider.
+- **options**:
+wallets: An array of wallet objects which the user can connect.
 
+Wallet Options
 Available wallets: {ordinalSafe, unisat, xverse, other} from "orangekit"
 
-```
+```javascript
 OrangeKitProvider({ children, options }: {
-    children: React.ReactNode;
-    options?: {
-        wallets?: Wallet[];
-    };
+children: React.ReactNode;
+options?: {
+wallets?: Wallet[];
+};
 }):
 ```
 
 ### ConnectButton
-
-A React button component for connecting bitcoin wallets.
+A simple button component to trigger the wallet connection.
 
 ### useOrangeKit Hook
+A custom hook that returns an object containing various wallet functions and properties.
 
-```
+### Methods & Properties:
+
+- **account**: An object of type Account.
+- **signBip322**: A function to sign a message using BIP322.
+
+```javascript
 useOrangeKit(): {
 	account: Account;
 	signBip322: (message: string) => Promise<string>;
-	verifyBip322: (message: string, signature: string, address: string) => Promise<boolean>;
-	authenticateWithBip322: (message: string) => Promise<boolean>;
-	authenticateWithGivenSignature: (message: string, signature: string, address: string) => Promise<boolean>;
-};
+	};
 ```
 
 ### Account Type
 
-```
+**Properties**:
+
+- **connected:** A boolean to check if a wallet is connected.
+- **address:** The wallet address or null.
+- **balance:** The balance of the wallet.
+- **network:** Either 'livenet', 'testnet', or null.
+authenticated: A boolean to check if the account has been authenticated.
+```javascript
 type Account = {
 	connected: boolean;
 	address: string | null;
 	balance: number;
 	network: "livenet" | "testnet" | null;
-	authenticated: boolean;
+	isAuthenticated: boolean;
 };
 ```
+
+## 🤝 Contribution Guidelines
+We welcome all contributors to OrangeKit. Check out our `CONTRIBUTING.md` for guidelines on how to contribute to this project.
+
+## ❓ Support and Questions
+For any questions or support, please open an issue in this repository.
+
+## 📜 License
+OrangeKit is licensed under the MIT License.
+

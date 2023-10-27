@@ -1,7 +1,6 @@
 import { AccountContext } from "../context/account/accountContext"
 import { IAccountContext } from "../types/account"
 import { useContext } from "react"
-import { Verifier } from "bip322-js"
 import { WalletContext } from "../context/wallet/walletContext"
 import { IWalletContext } from "../types/wallet"
 
@@ -11,8 +10,8 @@ export function useBitcoinKit() {
 	const { connectedWallet } = useContext(WalletContext) as IWalletContext
 
 	const signBip322 = async (message: string) => {
-		if (!connectedWallet) {
-			throw new Error("No connected wallet")
+		if (!connectedWallet || connectedWallet.name === "other") {
+			throw new Error("There is no connected wallet that is able to sign.")
 		}
 		let signature: string
 		if (connectedWallet.name === "xverse") {
@@ -23,17 +22,8 @@ export function useBitcoinKit() {
 		return signature
 	}
 
-	const verifyBip322 = async (
-		message: string,
-		signature: string,
-		address: string
-	) => {
-		return await Verifier.verifySignature(address, message, signature)
-	}
-
 	return {
 		account,
 		signBip322,
-		verifyBip322,
 	}
 }

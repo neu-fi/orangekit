@@ -2,9 +2,9 @@ import { Wallet } from "../types/wallet"
 import AccountProvider from "./account/accountContext"
 import WalletProvider from "./wallet/walletContext"
 import { Toaster } from "../components/ui/toaster"
-import { unisat, ordinalSafe, xverse } from "../components"
+import { unisat, ordinalSafe, xverse, other } from "../components"
 
-export const wallets: Wallet[] = [unisat, ordinalSafe, xverse]
+export const wallets: Wallet[] = [unisat, ordinalSafe, xverse, other]
 
 export default function BitcoinKitProvider({
 	children,

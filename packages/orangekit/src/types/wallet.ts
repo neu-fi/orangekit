@@ -23,10 +23,9 @@ export interface Xverse {
 }
 
 export interface Other {
-	sign: (message: string) => Promise<string>
 	requestAccounts: () => Promise<string[]>
 	render: () => JSX.Element
-	isInjected: boolean
+	isInjected: true
 	name: "other"
 }
 

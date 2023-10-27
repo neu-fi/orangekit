@@ -4,8 +4,9 @@
 	"type": "module",
 	"scripts": {
 		"dev": "pnpm --recursive --parallel --filter orangekit* --filter example dev",
-		"dev:lib": "pnpm --filter orangekit* dev",
+		"dev:lib": "pnpm --filter orangekit dev",
 		"dev:example": "pnpm dev:lib & pnpm --filter example dev",
+		"dev:website": "pnpm --filter website dev",
 		"build": "pnpm --recursive --parallel --filter orangekit* build",
 		"changeset": "changeset",
 		"clean": "rm -rf ./packages/orangekit/dist && rm -rf ./packages/orangekit/node_modules && pnpm install",

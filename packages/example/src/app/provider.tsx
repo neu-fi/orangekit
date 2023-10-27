@@ -1,12 +1,12 @@
 "use client"
 
 import React from "react"
-import { BitcoinKitProvider } from "orangekit"
+import { OrangeKitProvider } from "orangekit"
 
 export default function RootProvider({
 	children,
 }: {
 	children: React.ReactNode
 }) {
-	return <BitcoinKitProvider options={{}}>{children}</BitcoinKitProvider>
+	return <OrangeKitProvider options={{}}>{children}</OrangeKitProvider>
 }

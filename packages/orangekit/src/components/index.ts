@@ -1,4 +1,4 @@
 import ConnectButton from "./ConnectButton"
-import { ordinalSafe, unisat, xverse, other } from "./wallets"
+import WalletUI from "./WalletUI"
 
-export { ConnectButton, ordinalSafe, unisat, xverse, other }
+export { ConnectButton, WalletUI }

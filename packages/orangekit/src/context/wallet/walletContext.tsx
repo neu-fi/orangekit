@@ -37,7 +37,7 @@ const WalletProvider: React.FC<{
 		)
 
 		supportedWallets.forEach((wallet) => {
-			if (wallet.name === previousConnected.name) {
+			if (wallet.metaData.name === previousConnected.name) {
 				setConnectedWallet(wallet)
 			}
 		})

@@ -13,7 +13,7 @@ import { WalletContext } from "../context/wallet/walletContext"
 import { IWalletContext } from "../types/wallet"
 import { useContext, useEffect, useState } from "react"
 import { AccountContext } from "../context/account/accountContext"
-import { IAccountContext } from "../types/account"
+import { Account, IAccountContext } from "../types/account"
 import WalletUI from "./WalletUI"
 
 const ArrowRightOnRectangular = () => {
@@ -37,12 +37,11 @@ const ArrowRightOnRectangular = () => {
 	)
 }
 
-export default function ConnectButton() {
-	const { account } = useOrangeKit()
+function DisconnectedButton({ account }: { account: Account }) {
 	const { wallets } = useContext(WalletContext) as IWalletContext
-	const { disconnect } = useContext(AccountContext) as IAccountContext
 	const [open, setOpen] = useState(false)
 
+	// Close the modal once connected
 	useEffect(() => {
 		if (account?.connected) {
 			setOpen(false)
@@ -51,30 +50,20 @@ export default function ConnectButton() {
 
 	return (
 		<div className="flex items-center justify-center gap-2">
-			{account?.connected && (
-				<div className="flex gap-1">
-					<CopyClipboard text={account?.address!}>
-						{shorthandAddress(account?.address!)}
-					</CopyClipboard>
-				</div>
-			)}
 			<Dialog open={open} onOpenChange={setOpen}>
 				<DialogTrigger asChild>
 					<Button
-						variant={account?.connected ? "destructive" : "default"}
 						onClick={() => {
 							setOpen(true)
 						}}
 					>
-						{account?.connected ? <ArrowRightOnRectangular /> : "Connect"}
+						Connect Wallet
 					</Button>
 				</DialogTrigger>
-				<DialogContent className="sm:max-w-[425px]">
+				<DialogContent className="sm:max-w-md">
 					<DialogHeader>
 						<DialogTitle>
-							{account?.connected
-								? "Disconnect your account"
-								: "Choose a wallet"}
+							Choose a wallet
 						</DialogTitle>
 					</DialogHeader>
 					<div className="grid gap-4 py-4">
@@ -83,20 +72,70 @@ export default function ConnectButton() {
 								{<WalletUI wallet={wallet}></WalletUI>}
 							</div>
 						))}
-						{account?.connected && (
-							<Button
-								variant="default"
-								onClick={async () => {
-									await disconnect()
-									setOpen(false)
-								}}
-							>
-								Disconnect
-							</Button>
-						)}
 					</div>
 				</DialogContent>
 			</Dialog>
 		</div>
 	)
+}
+
+function ConnectedButton({ account }: { account: Account }) {
+	const { wallets } = useContext(WalletContext) as IWalletContext
+	const { disconnect } = useContext(AccountContext) as IAccountContext
+	const [open, setOpen] = useState(false)
+	
+	return (
+		<div className="flex items-center justify-center gap-2">
+			<div className="flex gap-1">
+				<CopyClipboard text={account?.address!}>
+					{shorthandAddress(account?.address!)}
+				</CopyClipboard>
+			</div>
+			<Dialog open={open} onOpenChange={setOpen}>
+				<DialogTrigger asChild>
+					<Button
+						variant={"destructive"}
+						onClick={() => {
+							setOpen(true)
+						}}
+					>
+						{<ArrowRightOnRectangular />}
+					</Button>
+				</DialogTrigger>
+				<DialogContent className="sm:max-w-md">
+					<DialogHeader>
+						<DialogTitle>
+							{"Disconnect your account"}
+						</DialogTitle>
+					</DialogHeader>
+					<div className="grid gap-4 py-4">
+						{wallets.map((wallet) => (
+							<div key={wallet.metaData.name}>
+								{<WalletUI wallet={wallet}></WalletUI>}
+							</div>
+						))}
+						<Button
+							variant="default"
+							onClick={async () => {
+								await disconnect()
+								setOpen(false)
+							}}
+						>
+							Disconnect
+						</Button>
+					</div>
+				</DialogContent>
+			</Dialog>
+		</div>
+	)
+}
+
+export default function ConnectButton() {
+	const { account } = useOrangeKit()
+
+	if ( account?.connected ) {
+		return <ConnectedButton account={account}/>
+	} else {
+		return <DisconnectedButton account={account}/>
+	}
 }

@@ -1,4 +1,4 @@
-## 🍊 OrangeKit
+# 🍊 OrangeKit
 
 OrangeKit is a React library built for web applications, designed to seamlessly integrate them with Bitcoin wallets.
 
@@ -93,7 +93,7 @@ A simple button component to trigger the wallet connection.
 ### useOrangeKit Hook
 A custom hook that returns an object containing various wallet functions and properties.
 
-### Methods & Properties:
+#### Methods & Properties:
 
 - **account**: An object of type Account.
 - **signBip322**: A function to sign a message using BIP322.

@@ -1,5 +1,4 @@
 ---
-import { Image } from "@astrojs/image/components";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
 import Layout from "@layouts/Layout.astro";
@@ -31,12 +30,10 @@ console.log(posts[0].frontmatter.image);
               <a href={post.url}>
                 <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
                   <div>
-                    <Image
+                    <img
                       src={post.frontmatter.image}
                       alt="Thumbnail"
                       width={600}
-                      format="avif"
-                      aspectRatio="16:9"
                       class="w-full rounded-md"
                     />
                   </div>

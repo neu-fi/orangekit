@@ -3,20 +3,21 @@
 OrangeKit is a React library built for web applications, designed to seamlessly integrate them with Bitcoin wallets.
 
 ## 📌 Table of Contents
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
+- [Features](#-features)
+- [Installation](#-installation)
+- [Usage](#-usage)
   - [App](#app)
   - [ConnectButton](#connectbutton)
-- [API Reference](#reference)
+- [API Reference](#-reference)
   - [OrangeKitProvider](#orangekitprovider)
-  - [ConnectButton](#connectbutton)
+  - [ConnectButton](#connectbutton-1)
   - [useOrangeKit Hook](#useorangekit-hook)
   - [Account Type](#account-type)
-- [Contribution Guidelines](#contribution-guidelines)
-- [Support and Questions](#support-and-questions)
-- [License](#license)
+- [Contribution Guidelines](#-contribution-guidelines)
+- [Support and Questions](#-support-and-questions)
+- [License](#-license)
 
+- 
 ## 🚀 Features
 
 OrangeKit currently provides the following:
@@ -45,25 +46,26 @@ bun install orangekit
 ## 🖥 Usage
 ### App
 ```javascript
-import React from "react"
-import { OrangeKitProvider } from "orangekit"
-import "orangekit/dist/index.css"
+import React from "react";
+import { OrangeKitProvider } from "orangekit";
+import "orangekit/dist/index.css";
 
 export default function App() {
-return (
-<OrangeKitProvider>
-<YourApp />
-</OrangeKitProvider>
-)
+    return (
+        <OrangeKitProvider>
+            <YourApp />
+        </OrangeKitProvider>
+    );
 }
+
 ```
 
 ### ConnectButton
 ```javascript
-import { ConnectButton } from "orangekit"
+import { ConnectButton } from "orangekit";
 
 export default function YourApp() {
-return <ConnectButton />
+    return <ConnectButton />;
 }
 ```
 
@@ -74,24 +76,23 @@ return <ConnectButton />
 - **children**: The components to render inside the provider.
 - **options**:
 wallets: An array of wallet objects which the user can connect.
-
-Wallet Options
 Available wallets: {ordinalSafe, unisat, xverse, other} from "orangekit"
 
 ```javascript
 OrangeKitProvider({ children, options }: {
-children: React.ReactNode;
-options?: {
-wallets?: Wallet[];
-};
+    children: React.ReactNode;
+    options?: {
+        wallets?: Wallet[];
+    };
 }):
+
 ```
 
 ### ConnectButton
-A simple button component to trigger the wallet connection.
+A component that triggers wallet connection.
 
 ### useOrangeKit Hook
-A custom hook that returns an object containing various wallet functions and properties.
+A custom hook that returns an object with various wallet functions and properties.
 
 #### Methods & Properties:
 

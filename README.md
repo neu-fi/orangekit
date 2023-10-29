@@ -17,7 +17,6 @@ OrangeKit is a React library built for web applications, designed to seamlessly 
 - [Support and Questions](#-support-and-questions)
 - [License](#-license)
 
-- 
 ## 🚀 Features
 
 OrangeKit currently provides the following:

@@ -1,7 +1,7 @@
 {
 	"name": "orangekit",
 	"private": false,
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"main": "dist/index.js",
 	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -54,7 +54,8 @@
 		"wallet",
 		"orange",
 		"orangekit",
-		"inscriptions"
+		"inscriptions",
+		"bitcoinkit"
 	],
 	"repository": {
 		"type": "git",

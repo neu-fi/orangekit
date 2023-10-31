@@ -55,10 +55,10 @@ interface Wallet = {
 }
 ```
 
-4. Export your wallet from
+5. Export your wallet from
    [lib/integrations/index.ts](https://github.com/neu-fi/orangekit/blob/main/packages/orangekit/src/lib/integrations/index.ts)
-5. Create a pull request by following the [Pull Requests guideline](-#pull-
-   requests) below
+6. Create a pull request by following the
+   [Pull Requests guideline](#pull-requests) below
 
 ### Pull Requests
 

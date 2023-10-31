@@ -35,9 +35,8 @@ const WalletProvider: React.FC<{
 		const previousConnected = JSON.parse(
 			window.localStorage.getItem("wallet") as string
 		)
-
 		supportedWallets.forEach((wallet) => {
-			if (wallet.metaData.name === previousConnected.name) {
+			if (wallet.metaData.name === previousConnected.metaData.name) {
 				setConnectedWallet(wallet)
 			}
 		})

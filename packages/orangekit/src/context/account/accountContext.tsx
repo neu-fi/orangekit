@@ -92,6 +92,37 @@ const AccountProvider: React.FC<{ children: React.ReactNode }> = ({
 		)
 	}, [])
 
+	React.useEffect(() => {
+		const handler = (accounts: string[]) => {
+			setAccount({
+				connected: true,
+				address: accounts[0],
+			})
+			window.localStorage.setItem(
+				"account",
+				JSON.stringify({
+					connected: true,
+					address: accounts[0],
+				})
+			)
+			toast({
+				variant: "default",
+				title: "Account changed",
+				description: `New account: ${accounts[0]}`,
+			})
+		}
+		if (!connectedWallet) return
+		if (connectedWallet.subscribeAccountsChanged) {
+			connectedWallet.subscribeAccountsChanged(handler)
+		}
+
+		return () => {
+			if (connectedWallet.unsubscribeAccountsChanged) {
+				connectedWallet.unsubscribeAccountsChanged(handler)
+			}
+		}
+	}, [connectedWallet])
+
 	return (
 		<AccountContext.Provider
 			value={{

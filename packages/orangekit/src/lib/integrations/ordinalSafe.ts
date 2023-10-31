@@ -1,4 +1,4 @@
-import { OrdinalSafe, WalletMetaData } from "../../types/wallet"
+import { Wallet, WalletMetaData } from "../../types/wallet"
 const ordinalsafe_logo = require("../../assets/ordinalsafe_logo.webp")
 
 const sign = async (message: string): Promise<string> => {
@@ -34,7 +34,7 @@ const metaData: WalletMetaData = {
 	dowloadLink: "https://ordinalsafe.xyz/",
 }
 
-const ordinalSafe: OrdinalSafe = {
+const ordinalSafe: Wallet = {
 	sign,
 	requestAccounts,
 	isInjected,

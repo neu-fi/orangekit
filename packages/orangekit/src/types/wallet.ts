@@ -5,28 +5,14 @@ export type WalletMetaData = {
 	description?: string
 }
 
-export interface OrdinalSafe {
+export type Wallet = {
 	sign: (message: string) => Promise<string>
 	requestAccounts: () => Promise<string[]>
 	isInjected: () => boolean
 	metaData: WalletMetaData
+	subscribeAccountsChanged?: (callback: (accounts: string[]) => void) => void
+	unsubscribeAccountsChanged?: (callback: (accounts: string[]) => void) => void
 }
-
-export interface Unisat {
-	sign: (message: string) => Promise<string>
-	requestAccounts: () => Promise<string[]>
-	isInjected: () => boolean
-	metaData: WalletMetaData
-}
-
-export interface Xverse {
-	sign: (message: string) => Promise<string>
-	requestAccounts: () => Promise<string[]>
-	isInjected: () => boolean
-	metaData: WalletMetaData
-}
-
-export type Wallet = OrdinalSafe | Unisat | Xverse
 
 export interface IWalletContext {
 	wallets: Wallet[]

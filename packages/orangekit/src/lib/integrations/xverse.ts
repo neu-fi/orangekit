@@ -4,7 +4,7 @@ import {
 	getAddress,
 	signMessage,
 } from "sats-connect"
-import { WalletMetaData, Xverse } from "../../types/wallet"
+import { Wallet, WalletMetaData } from "../../types/wallet"
 const xverse_logo = require("../../assets/xverse_logo.png")
 
 const sign = async (message: string): Promise<string> => {
@@ -60,7 +60,7 @@ const metaData: WalletMetaData = {
 	dowloadLink: "https://www.xverse.app/download",
 }
 
-const xverse: Xverse = {
+const xverse: Wallet = {
 	sign,
 	requestAccounts,
 	isInjected,

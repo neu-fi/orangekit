@@ -1,4 +1,4 @@
-import { Unisat, WalletMetaData } from "../../types/wallet"
+import { Wallet, WalletMetaData } from "../../types/wallet"
 const unisat_logo = require("../../assets/unisat_logo.svg")
 
 const sign = async (message: string): Promise<string> => {
@@ -33,11 +33,21 @@ const metaData: WalletMetaData = {
 	dowloadLink: "https://unisat.io/download",
 }
 
-const unisat: Unisat = {
+const subscribeAccountsChanged = (callback: (accounts: string[]) => void) => {
+	window.unisat.on("accountsChanged", callback)
+}
+
+const unsubscribeAccountsChanged = (callback: (accounts: string[]) => void) => {
+	window.unisat.removeListener("accountsChanged", callback)
+}
+
+const unisat: Wallet = {
 	sign,
 	requestAccounts,
 	isInjected,
 	metaData,
+	subscribeAccountsChanged,
+	unsubscribeAccountsChanged,
 }
 
 export default unisat

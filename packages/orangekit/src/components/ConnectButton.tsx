@@ -12,7 +12,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "../components/ui/tooltip"
-import { InfoCircledIcon } from "@radix-ui/react-icons"
+import { CaretDownIcon } from "@radix-ui/react-icons"
 import { useOrangeKit } from "../hooks/useOrangeKit"
 import { shorthandAddress } from "../lib/utils"
 import { CopyClipboard } from "./ui/copy-clipboard"
@@ -108,7 +108,10 @@ function ConnectedButton({ account }: { account: Account }) {
 							setOpen(true)
 						}}
 					>
-						{shorthandAddress(account?.address!)}
+						<div className="flex gap-1 items-center justify-center">
+							{shorthandAddress(account?.address!)}
+							<CaretDownIcon className="w-6 h-6" />
+						</div>
 					</Button>
 				</DialogTrigger>
 				<DialogContent className="sm:max-w-md">

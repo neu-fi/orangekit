@@ -9,16 +9,11 @@ export default function Home() {
 		console.log(account)
 	}, [account])
 	return (
-		<div className="flex flex-col gap-2">
-			<ConnectButton />
-			<button
-				className="h-10 w-12"
-				onClick={async () => {
-					const signature = await signBip322("hello world")
-				}}
-			>
-				Sign Message
-			</button>
+		<div className="h-screen grid place-items-center">
+			<div>
+				<p className="font-semibold pb-6">OrangeKit Example</p>
+				<ConnectButton />
+			</div>
 		</div>
 	)
 }

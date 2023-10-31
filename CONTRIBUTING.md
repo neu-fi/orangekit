@@ -30,8 +30,9 @@ maintainers.
 1. **Ensure the wallet was not already integrated** by checking the
    [lib/integrations](https://github.com/neu-fi/orangekit/blob/main/packages/orangekit/src/lib/integrations/index.ts)
 2. Create a new branch: `git checkout -b NEW_WALLET_"EXAMPLE_WALLET_NAME"`
-3. Create a new file with the name exampleWalletName.ts (name your wallet
-   according to camelCase)
+3. Create a new file under
+   [lib/integrations](https://github.com/neu-fi/orangekit/blob/main/packages/orangekit/src/lib/integrations)
+   with the name exampleWalletName.ts (name your wallet according to camelCase)
 4. Implement required functions and write your wallet's metadata according to
    given interface below. see
    [unisat.ts](https://github.com/neu-fi/orangekit/blob/main/packages/orangekit/src/lib/integrations/unisat.ts)

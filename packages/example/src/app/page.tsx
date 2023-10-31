@@ -8,5 +8,14 @@ export default function Home() {
 	useEffect(() => {
 		console.log(account)
 	}, [account])
-	return <ConnectButton />
+	return (
+		<div className="h-screen grid place-items-center">
+			<div>
+			<p className="font-semibold pb-6">
+				OrangeKit Example
+			</p>
+			<ConnectButton />
+			</div>
+		</div>
+	)
 }

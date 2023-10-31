@@ -9,8 +9,8 @@ export default defineConfig({
 	// This provides type-definitions to consumers.
 	dts: true,
 	// Clean the `dist` directory before building.
-	// This is useful to ensure the output is only the latest.
-	clean: true,
+	// Set to false for not logging errors on hot reload
+	clean: false,
 	// Sourcemaps for easier debugging.
 	sourcemap: true,
 	loader: {

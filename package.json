@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "pnpm --recursive --parallel --filter orangekit* --filter example dev",
+		"dev": "pnpm --filter orangekit build-watch & pnpm --filter example dev",
 		"dev:lib": "pnpm --filter orangekit dev",
 		"dev:example": "pnpm dev:lib & pnpm --filter example dev",
 		"dev:website": "pnpm --filter website dev",

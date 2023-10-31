@@ -26,7 +26,7 @@ export const CopyClipboard = ({
 			}}
 			disabled={copied}
 			className={cn(
-				"flex items-center justify-between gap-2",
+				"flex flex-col-reverse items-center justify-between gap-2",
 				children ? "border py-1 px-2 rounded-md" : "border-0"
 			)}
 		>
@@ -38,7 +38,7 @@ export const CopyClipboard = ({
 					viewBox="0 0 24 24"
 					strokeWidth={1.5}
 					stroke="currentColor"
-					className="w-4 h-4"
+					className="w-6 h-6"
 				>
 					<path
 						strokeLinecap="round"
@@ -53,7 +53,7 @@ export const CopyClipboard = ({
 					viewBox="0 0 24 24"
 					strokeWidth={1.5}
 					stroke="currentColor"
-					className="w-4 h-4"
+					className="w-6 h-6"
 				>
 					<path
 						strokeLinecap="round"

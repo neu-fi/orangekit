@@ -6,5 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function shorthandAddress(address: string, chars = 4) {
-	return `${address.slice(0, chars)}...${address.slice(-chars)}`
+	return `${address.slice(0, chars)}${
+		"\u00B7" + "\u00B7" + "\u00B7"
+	}${address.slice(-chars)}`
 }

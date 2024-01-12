@@ -70,7 +70,7 @@ function DisconnectedButton({ account }: { account: Account }) {
 				</DialogTrigger>
 				<DialogContent className="sm:max-w-md">
 					<DialogHeader>
-						<DialogTitle>Choose a wallet</DialogTitle>
+						<DialogTitle>Choose Wallet</DialogTitle>
 					</DialogHeader>
 					<div className="grid gap-4 py-4">
 						{wallets.map((wallet) => (
@@ -86,18 +86,8 @@ function DisconnectedButton({ account }: { account: Account }) {
 }
 
 function ConnectedButton({ account }: { account: Account }) {
-	const { wallets } = useContext(WalletContext) as IWalletContext
 	const { disconnect } = useContext(AccountContext) as IAccountContext
 	const [open, setOpen] = useState(false)
-	{
-		/*
-		<div className="flex gap-1">
-				<CopyClipboard text={account?.address!}>
-					{shorthandAddress(account?.address!)}
-				</CopyClipboard>
-			</div>
-			*/
-	}
 	return (
 		<div className="flex items-center justify-center gap-2">
 			<Dialog open={open} onOpenChange={setOpen}>
@@ -107,10 +97,14 @@ function ConnectedButton({ account }: { account: Account }) {
 						onClick={() => {
 							setOpen(true)
 						}}
+						className="pl-2.5 pr-2"
 					>
-						<div className="flex gap-1 items-center justify-center">
-							{shorthandAddress(account?.address!)}
-							<CaretDownIcon className="w-6 h-6" />
+						<div className="flex gap-1 items-center justify-center m-0 p-0 ">
+							<div className="rounded-full h-6 w-6 bg-gray-600 mr-1"></div>
+							<p className="font-bold">
+								{shorthandAddress(account?.address!)}
+							</p>
+							<CaretDownIcon className="w-6 h-6 p-0 m-0" />
 						</div>
 					</Button>
 				</DialogTrigger>
@@ -120,7 +114,7 @@ function ConnectedButton({ account }: { account: Account }) {
 					</DialogHeader>
 					<div className="grid gap-4 py-4">
 						<div className="flex flex-col gap-2 items-center justify-center">
-							<div className="rounded-full h-20 w-20 bg-[#808080]"></div>
+							<div className="rounded-full h-20 w-20 bg-gray-600"></div>
 							<TooltipProvider>
 								<Tooltip>
 									<TooltipTrigger className="font-bold">
